@@ -7,6 +7,9 @@ export class UserDomainService {
     user: User,
     plainPassword: string,
   ): Promise<boolean> {
+    if (!user.password || !plainPassword) {
+      throw new Error('data and hash arguments required');
+    }
     return await bcrypt.compare(plainPassword, user.password);
   }
 

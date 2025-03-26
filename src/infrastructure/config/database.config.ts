@@ -3,5 +3,5 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 export const databaseConfig: MongooseModuleOptions = {
-  uri: process.env.MONGODB_URI,
+  uri: 'MONGODB_URI',
 };

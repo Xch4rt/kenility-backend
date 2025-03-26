@@ -2,9 +2,11 @@ import { IUserRepository } from 'src/domain/repositories/user.repository.interfa
 import { UserDomainService } from 'src/domain/services/user.service';
 import { User } from 'src/domain/entities/user.entity';
 import { RegisterUserDto } from '../dtos/register-user.dto';
+import { Inject } from '@nestjs/common';
 
 export class RegisterUserUseCase {
   constructor(
+    @Inject('IUserRepository')
     private readonly userRepository: IUserRepository,
     private readonly userDomainService: UserDomainService,
   ) {}

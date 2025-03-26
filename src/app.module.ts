@@ -25,6 +25,7 @@ import { ProductController } from './presentation/controllers/product.controller
 import { OrderController } from './presentation/controllers/order.controller';
 import { UserController } from './presentation/controllers/user.controller';
 import { UserService } from './application/services/user.service';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -47,6 +48,10 @@ import { UserService } from './application/services/user.service';
       { name: 'Order', schema: OrderSchema },
       { name: 'User', schema: UserSchema },
     ]),
+    JwtModule.register({
+      secret: process.env.JWT_SECRET || 'defaultSecret',
+      signOptions: { expiresIn: '1h' },
+    }),
   ],
   controllers: [ProductController, OrderController, UserController],
   providers: [
