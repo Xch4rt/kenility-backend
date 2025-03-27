@@ -10,6 +10,7 @@ export class OrderRepository implements IOrderRepository {
 
   async create(order: Order): Promise<Order> {
     const createdOrder = new this.orderModel({
+      userId: order.userId,
       total: order.total,
       products: order.products.map((product) => product.id),
       createdAt: order.createdAt,
@@ -33,7 +34,7 @@ export class OrderRepository implements IOrderRepository {
 
   async update(order: Order): Promise<Order> {
     await this.orderModel.findByIdAndUpdate(order.id, {
-      clientId: order.clientId,
+      clientId: order.userId,
       total: order.total,
       products: order.products.map((product) => product.id),
     });

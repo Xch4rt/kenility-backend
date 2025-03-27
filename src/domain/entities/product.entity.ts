@@ -6,6 +6,7 @@ export class Product {
     public readonly id: string,
     public name: string,
     public sku: string,
+    public stock: number,
     public picture_url: string,
     public price: number,
     createdAt?: Date,
@@ -17,6 +18,10 @@ export class Product {
 
     if (price <= 0) {
       throw new Error('Price must be greater than 0');
+    }
+
+    if (stock < 0) {
+      throw new Error('Stock must be greater than or equal to 0');
     }
 
     this.createdAt = createdAt ? createdAt : new Date();

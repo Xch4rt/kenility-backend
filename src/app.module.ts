@@ -9,7 +9,6 @@ import { ProductRepository } from './infrastructure/persistence/mongoose/product
 import { OrderRepository } from './infrastructure/persistence/mongoose/order.repository';
 import { UserRepository } from './infrastructure/persistence/mongoose/user.repository';
 import { JwtStrategy } from './infrastructure/security/jwt.strategy';
-import { FileStorageService } from './infrastructure/file-upload/file-storage.service';
 import { CreateProductUseCase } from './application/use-cases/create-product.usecase';
 import { GetProductUseCase } from './application/use-cases/get-product.usecase';
 import { CreateOrderUseCase } from './application/use-cases/create-order.usecase';
@@ -26,6 +25,8 @@ import { OrderController } from './presentation/controllers/order.controller';
 import { UserController } from './presentation/controllers/user.controller';
 import { UserService } from './application/services/user.service';
 import { JwtModule } from '@nestjs/jwt';
+import { GetProductsUseCase } from './application/use-cases/get-products.usecase';
+import { S3Service } from './application/services/s3.service';
 
 @Module({
   imports: [
@@ -59,14 +60,20 @@ import { JwtModule } from '@nestjs/jwt';
       provide: 'IUserRepository',
       useClass: UserRepository,
     },
+    {
+      provide: 'IProductRepository',
+      useClass: ProductRepository,
+    },
+    {
+      provide: 'IOrderRepository',
+      useClass: OrderRepository,
+    },
     UserService,
-    ProductRepository,
-    OrderRepository,
-    UserRepository,
     JwtStrategy,
-    FileStorageService,
+    S3Service,
     CreateProductUseCase,
     GetProductUseCase,
+    GetProductsUseCase,
     CreateOrderUseCase,
     UpdateOrderUseCase,
     GetTotalSoldPriceUseCase,

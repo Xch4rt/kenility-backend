@@ -18,12 +18,12 @@ export class ProductRepository implements IProductRepository {
 
   async findById(id: string): Promise<Product | null> {
     const product = await this.productModel.findById(id).exec();
-    return product ? product.toJSON() : null;
+    return product ? product.toJSON({ virtuals: true }) : null;
   }
 
   async findAll(): Promise<Product[]> {
     const products = await this.productModel.find().exec();
-    return products.map((p) => p.toJSON());
+    return products.map((p) => p.toJSON({ virtuals: true }));
   }
 
   async update(product: Product): Promise<Product> {

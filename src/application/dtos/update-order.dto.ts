@@ -7,7 +7,7 @@ export class UpdateOrderDto {
 
   @IsOptional()
   @IsString()
-  clientId?: string;
+  userId?: string;
 
   @IsOptional()
   @IsArray()

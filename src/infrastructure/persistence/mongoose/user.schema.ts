@@ -9,6 +9,10 @@ export const UserSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
+UserSchema.virtual('id').get(function () {
+  return this._id.toString();
+});
+
 UserSchema.set('toJSON', {
   virtuals: true,
   versionKey: false,

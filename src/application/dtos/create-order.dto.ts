@@ -3,7 +3,7 @@ import { IsNotEmpty, IsString, IsArray, ArrayNotEmpty } from 'class-validator';
 export class CreateOrderDto {
   @IsNotEmpty()
   @IsString()
-  clientName: string;
+  userId: string;
 
   @IsNotEmpty()
   @IsArray()

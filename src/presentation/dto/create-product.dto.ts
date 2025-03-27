@@ -10,6 +10,10 @@ export class CreateProductDto {
   sku: string;
 
   @IsNotEmpty()
+  @IsNumber()
+  stock: number;
+
+  @IsNotEmpty()
   @IsString()
   picture: string;
 

@@ -6,14 +6,14 @@ export class Order {
 
   constructor(
     public readonly id: string,
-    public clientId: string,
+    public userId: string,
     public total: number,
     public products: Product[],
     createdAt?: Date,
     updatedAt?: Date,
   ) {
-    if (!clientId) {
-      throw new Error('Client is required to create an order');
+    if (!userId) {
+      throw new Error('User client is required to create an order');
     }
 
     if (total <= 0) {

@@ -6,9 +6,10 @@ export class ProductDomainService {
     name: string,
     price: number,
     sku: string,
+    stock: number,
     picture_url: string,
   ): Product {
     const id = uuidv4();
-    return new Product(id, name, sku, picture_url, price);
+    return new Product(id, name, sku, stock, picture_url, price);
   }
 }

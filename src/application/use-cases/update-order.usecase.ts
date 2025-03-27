@@ -3,10 +3,13 @@ import { IProductRepository } from 'src/domain/repositories/product.repository.i
 import { Order } from 'src/domain/entities/order.entity';
 import { Product } from 'src/domain/entities/product.entity';
 import { UpdateOrderDto } from '../dtos/update-order.dto';
+import { Inject } from '@nestjs/common';
 
 export class UpdateOrderUseCase {
   constructor(
+    @Inject('IOrderRepository')
     private readonly orderRepository: IOrderRepository,
+    @Inject('IProductRepository')
     private readonly productRepository: IProductRepository,
   ) {}
 
@@ -15,8 +18,8 @@ export class UpdateOrderUseCase {
     if (!order) {
       throw new Error('Orden no encontrada');
     }
-    if (dto.clientId) {
-      order.clientId = dto.clientId;
+    if (dto.userId) {
+      order.userId = dto.userId;
     }
     if (dto.productIds && dto.productIds.length > 0) {
       const products: Product[] = [];

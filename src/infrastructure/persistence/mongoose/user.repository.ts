@@ -19,12 +19,12 @@ export class UserRepository implements IUserRepository {
 
   async findById(id: string): Promise<User | null> {
     const user = await this.userModel.findById(id).exec();
-    return user ? user.toJSON() : null;
+    return user ? user.toObject({ virtuals: true }) : null;
   }
 
   async findByEmail(email: string): Promise<User | null> {
     const user = await this.userModel.findOne({ email }).exec();
-    return user ? user.toObject() : null;
+    return user ? user.toObject({ virtuals: true }) : null;
   }
 
   async update(user: User): Promise<User> {
